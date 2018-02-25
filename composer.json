@@ -1,0 +1,11 @@
+{
+	"authors": [
+        {
+            "name": "Eugene Liyai",
+            "role": "Developer"
+        }
+    ],
+	"require": {
+    	"vlucas/phpdotenv": "^2.4"
+    }
+}
