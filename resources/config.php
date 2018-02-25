@@ -19,7 +19,7 @@ defined("DB_USER") ? null : define("DB_USER", getenv('DB_USERNAME'));
 defined("DB_PASSWORD") ? null : define("DB_PASSWORD", getenv('DB_PASSWORD'));
 defined("DB_NAME") ? null : define("DB_NAME", getenv('DB_DATABASE'));
 
-$connection = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD);
+$connection = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
 
 if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
