@@ -3,7 +3,7 @@
 <?php include(TEMPLATE_FRONT . DS . 'header.php') ?>
 
 <!-- Page Content -->
-<div clas="container">
+<div class="container">
 	<div class="row">
 		
 		<!-- Categories -->
@@ -17,6 +17,9 @@
 					<?php include(TEMPLATE_FRONT . DS . 'slider.php') ?>
 
 				</div>
+			</div>
+			<div class="row">
+				<?php get_products (); ?>
 			</div>
 		</div>
 
