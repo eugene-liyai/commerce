@@ -72,4 +72,31 @@ DELIMETER;
 	}
 }
 
+// get products in category
+
+function get_products_in_category_page() {
+	$query = query("SELECT * FROM products WHERE product_category_id = ". escape_string($_GET['id']) ." ");
+	confirm($query);
+
+	while($row = fetch_array($query)){
+$products = <<<DELIMETER
+	<div class="col-md-3 col-sm-6 hero-feature">
+		<div class="thumbnail">
+			<img src="{$row['product_image']}" alt="">
+			<div class="caption">
+				<h3>{$row['product_title']}</h3>
+				<p>{$row['product_short_description']}</p>
+				<p>
+					<a href="#" class="btn btn-primary">Buy Now!</a>
+					<a href="item.php?id={$row['product_id']}" class="btn btn-default">More Info</a>
+				</p>
+			</div>
+		</div>
+	</div>
+DELIMETER;
+
+	echo $products;
+	}
+}
+ 
 ?>
