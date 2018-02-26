@@ -10,14 +10,12 @@
 
 <?php 
 
-
 $query = query(" SELECT * FROM products WHERE product_id = " . escape_string($_GET['id']) . " ");
 confirm($query);
 
-while($row = fetch_array($query)):
+ while($row = fetch_array($query)):
 
-
- ?>
+?>
 
 
 <div class="col-md-9">
@@ -29,7 +27,7 @@ while($row = fetch_array($query)):
     <div class="col-md-7">
 
 
-       <img class="img-responsive" src="../resources/<?php  echo display_image($row['product_image']); ?>" alt="">
+       <img class="img-responsive" src="../resources/<?php  //echo display_image($row['product_image']); ?>" alt="">
 
 
     </div>
@@ -42,7 +40,7 @@ while($row = fetch_array($query)):
     <div class="caption-full">
         <h4><a href="#"><?php echo $row['product_title']; ?></a> </h4>
         <hr>
-        <h4 class=""><?php echo "&#36;" . $row['product_price']; ?></h4>
+        <h4 class=""><?php echo "KES " . $row['product_price']; ?></h4>
 
     <div class="ratings">
      
@@ -50,13 +48,13 @@ while($row = fetch_array($query)):
             <span class="glyphicon glyphicon-star"></span>
             <span class="glyphicon glyphicon-star"></span>
             <span class="glyphicon glyphicon-star"></span>
-            <span class="glyphicon glyphicon-star"></span>
             <span class="glyphicon glyphicon-star-empty"></span>
-            4.0 stars
+            <span class="glyphicon glyphicon-star-empty"></span>
+            3.0 stars
         </p>
     </div>
           
-        <p><?php echo $row['short_desc']; ?></p>
+        <p><?php echo $row['product_short_description']; ?></p>
 
    
     <form action="">
@@ -209,4 +207,4 @@ while($row = fetch_array($query)):
 </div>
     <!-- /.container -->
 
-<?php include(TEMPLATE_FRONT . DS . "footer.php") ?>
+<?php include(TEMPLATE_FRONT . DS . 'footer.php') ?>
