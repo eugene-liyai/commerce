@@ -43,7 +43,7 @@ $product = <<<DELIMETER
             <h4 class="pull-right">KES {$row['product_price']}</h4>
             <h4><a href="item.php?id={$row['product_id']}">{$row['product_title']}</a>
             </h4>
-            <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+            <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>  
              <a class="btn btn-primary" target="_blank" href="item.php?id={$row['product_id']}">Add to cart</a>
         </div>
 
@@ -54,6 +54,21 @@ $product = <<<DELIMETER
 DELIMETER;
 
 	echo $product;
+	}
+}
+
+// get categories
+
+function get_categories() {
+	 $query = query("SELECT * FROM categories");
+	 confirm($query);
+
+	 while($row = fetch_array($query)) {
+$category = <<<DELIMETER
+	<a href='category.php?id={$row['category_id']}' class='list-group-item'>{$row['category_title']}</a>
+DELIMETER;
+
+	echo $category;
 	}
 }
 
