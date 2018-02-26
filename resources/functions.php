@@ -125,5 +125,11 @@ DELIMETER;
 	echo $products;
 	}
 }
+
+// login function
+
+function login_user() {
+
+}
  
 ?>
