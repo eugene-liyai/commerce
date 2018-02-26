@@ -1,6 +1,6 @@
 <?php require_once("../resources/config.php"); ?>
 
-<?php include(TEMPLATE_FRONT . DS . "header.php") ?>
+<?php include(TEMPLATE_FRONT . DS . 'header.php') ?>
 
     <!-- Page Content -->
     <div class="container">
@@ -26,7 +26,7 @@
         <!-- Page Features -->
         <div class="row text-center">
 
-         <?php get_products_in_cat_page(); ?>
+         <?php get_products_in_category_page(); ?>
 
 
         </div>
@@ -38,4 +38,4 @@
     <!-- /.container -->
 
 
-<?php include(TEMPLATE_FRONT . DS . "footer.php") ?>
+<?php include(TEMPLATE_FRONT . DS . 'footer.php') ?>
