@@ -52,3 +52,8 @@ body {
 footer {
     margin: 50px 0;
 }
+
+.bg-warning, .bg-danger {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

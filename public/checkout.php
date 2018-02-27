@@ -8,7 +8,7 @@
 <!-- /.row --> 
 
 <div class="row">
-      <h4 class="text-center bg-danger"><?php // display_message(); ?></h4>
+      <h5 class="text-center bg-danger"><?php display_message(); ?></h5>
       <h1>Checkout</h1>
 
 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
