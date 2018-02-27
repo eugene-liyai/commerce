@@ -159,5 +159,13 @@ function login_user() {
 		}
 	}
 }
+
+// send message from contact us page
+
+function send_message() {
+	if(isset($_POST['submit'])) {
+		
+	}
+}
  
 ?>
