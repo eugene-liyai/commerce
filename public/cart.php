@@ -18,4 +18,19 @@
 		}
 	}
 
+	if(isset($_GET['remove'])) {
+		$_SESSION['product_'. $_GET['remove']] --;
+
+		if($_SESSION['product_'. $_GET['remove']] < 1) {
+			redirect('checkout.php');
+		} else {
+
+		}
+	}
+
+	if(isset($_GET['delete'])) {
+		$_SESSION['product_'. $_GET['delete']] = 0;
+		redirect('checkout.php');
+	}
+
 ?>
