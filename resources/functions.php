@@ -159,5 +159,28 @@ function login_user() {
 		}
 	}
 }
+
+// send message from contact us page
+
+function send_message() {
+	if(isset($_POST['submit'])) {
+		global $admin_email;
+		$from_name 	= escape_string($_POST['name']);
+		$email 		= escape_string($_POST['email']);
+		$subject 	= escape_string($_POST['subject']);
+		$message 	= escape_string($_POST['message']);
+
+		$headers 	= "From: {$from_name} {$email}";
+		$result 	= mail($admin_email, $subject, $message, $headers);
+
+		if(!$result) {
+			set_message('Error! message not sent. Try again');
+			redirect('contact.php');
+		} else {
+			set_message('Message sent');
+			redirect('contact.php');
+		}
+	}
+}
  
 ?>
