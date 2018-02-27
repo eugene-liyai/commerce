@@ -20,6 +20,7 @@ defined("DB_PASSWORD") ? null : define("DB_PASSWORD", getenv('DB_PASSWORD'));
 defined("DB_NAME") ? null : define("DB_NAME", getenv('DB_DATABASE'));
 
 $connection = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
+$admin_email = getenv('ADMIN_EMAIL');
 
 if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
