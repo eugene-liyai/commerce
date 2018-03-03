@@ -1,4 +1,5 @@
 <?php require_once("../resources/config.php"); ?>
+<?php require_once("cart.php"); ?>
 <?php include(TEMPLATE_FRONT . DS . "header.php") ?>
 
 <!-- Page Content -->
@@ -36,16 +37,7 @@
           </tr>
         </thead>
         <tbody>
-          <?php //cart(); ?>
-          <tr>
-          	<td>apple</td>
-          	<td>$23</td>
-          	<td>3</td>
-          	<td>2</td>
-          	<td><a class="btn btn-info" href="cart.php?add=1">add</a></td>
-          	<td><a class="btn btn-warning" href="cart.php?remove=1">remove</a></td>
-          	<td><a class="btn btn-danger" href="cart.php?delete=1">delete</a></td>
-          </tr>
+          <?php cart(); ?>
         </tbody>
     </table>
   <?php //echo show_paypal(); ?>
