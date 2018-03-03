@@ -44,9 +44,9 @@ $products = <<<DELIMETER
 	<td>KES {$row['product_price']}</td>
 	<td>{$row['product_quantity']}</td>
 	<td>2</td>
-	<td><a class="btn btn-info" href="cart.php?add=1">add</a></td>
-	<td><a class="btn btn-warning" href="cart.php?remove=1">remove</a></td>
-	<td><a class="btn btn-danger" href="cart.php?delete=1">delete</a></td>
+	<td><a class="btn btn-info" href="cart.php?add={$row['product_id']}"><span class="glyphicon glyphicon-plus"></span></a>
+	<a class="btn btn-warning" href="cart.php?remove={$row['product_id']}"><span class="glyphicon glyphicon-minus"></span></a>
+	<a class="btn btn-danger" href="cart.php?delete={$row['product_id']}"><span class="glyphicon glyphicon-remove"></span></a></td>
 </tr>
 DELIMETER;
 
