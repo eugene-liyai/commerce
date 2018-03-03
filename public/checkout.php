@@ -8,8 +8,18 @@
 <!-- /.row --> 
 
 <div class="row">
+	<?php if(isset($_SESSION['message'])): ?>
       <h5 class="text-center bg-danger"><?php display_message(); ?></h5>
-      <h1>Checkout</h1>
+    <?php endif; ?>
+    <h1>Checkout</h1>
+
+    <?php 
+
+    if(isset($_SESSION['product_1'])) {
+    	echo $_SESSION['product_1'];
+    }
+
+    ?>
 
 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
 <input type="hidden" name="cmd" value="_cart">
@@ -27,6 +37,15 @@
         </thead>
         <tbody>
           <?php //cart(); ?>
+          <tr>
+          	<td>apple</td>
+          	<td>$23</td>
+          	<td>3</td>
+          	<td>2</td>
+          	<td><a class="btn btn-info" href="cart.php?add=1">add</a></td>
+          	<td><a class="btn btn-warning" href="cart.php?remove=1">remove</a></td>
+          	<td><a class="btn btn-danger" href="cart.php?delete=1">delete</a></td>
+          </tr>
         </tbody>
     </table>
   <?php //echo show_paypal(); ?>
