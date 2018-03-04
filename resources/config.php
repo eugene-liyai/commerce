@@ -7,6 +7,7 @@ $dotenv->load();
 
 ob_start();
 session_start();
+// session_destroy();
 
 // directory pattern
 defined("DS") ? null : define("DS", DIRECTORY_SEPARATOR);
