@@ -45,6 +45,7 @@ if(isset($_GET['delete'])) {
 function cart() {
 
 	$total = 0;
+	$item_quantity = 0;
 
 	foreach($_SESSION as $name => $value) {
 
@@ -59,6 +60,7 @@ function cart() {
 			while($row = fetch_array($query)){
 
 				$sub_total = $row['product_price'] * $value;
+				$item_quantity += $value;
 
 $products = <<<DELIMETER
 <tr>
@@ -76,6 +78,7 @@ DELIMETER;
 			}
 
 			$_SESSION['items_total'] = $total += $sub_total;
+			$_SESSION['items_quantity'] = $item_quantity;
 		}
 	}
 }

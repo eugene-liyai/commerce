@@ -45,8 +45,10 @@
 	<table class="table table-bordered" cellspacing="0">
 		<tr class="cart-subtotal">
 			<th>Items:</th>
-			<td><span class="amount"><?php 
-// echo isset($_SESSION['item_quantity']) ? $_SESSION['item_quantity'] : $_SESSION['item_quantity'] = "0";?></span></td>
+			<td><span class="amount">
+			<?php 
+				echo isset($_SESSION['items_quantity']) ? $_SESSION['items_quantity'] : $_SESSION['items_quantity'] = "0";
+			?></span></td>
 		</tr>
 		<tr class="shipping">
 			<th>Shipping and Handling</th>
