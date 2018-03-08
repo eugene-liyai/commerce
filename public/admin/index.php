@@ -17,9 +17,9 @@
                     include(TEMPLATE_BACK . DS . 'admin_content.php');
                 }
 
-                // if(isset($_GET['orders'])){
-                //     include(TEMPLATE_BACK . "/orders.php");
-                // }
+                if(isset($_GET['orders'])){
+                    include(TEMPLATE_BACK . DS . 'order.php');
+                }
 
                 // if(isset($_GET['categories'])){
                 //     include(TEMPLATE_BACK . "/categories.php");
