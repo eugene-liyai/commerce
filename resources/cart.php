@@ -1,4 +1,4 @@
-<?php require_once("../resources/config.php"); ?>
+<?php require_once("config.php"); ?>
 
 <?php 
 
@@ -12,10 +12,10 @@ if(isset($_GET['add'])) {
 	while($row = fetch_array($query)) {
 		if($row['product_quantity'] != $_SESSION['product_'. $_GET['add']]) {
 			$_SESSION['product_'. $_GET['add']] += 1;
-			redirect('checkout.php');
+			redirect('../public/checkout.php');
 		} else {
 			set_message('We only have '. $row['product_quantity'] .' '. $row["product_title"] .' available');
-			redirect('checkout.php');
+			redirect('../public/checkout.php');
 		}
 	}
 }
@@ -28,9 +28,9 @@ if(isset($_GET['remove'])) {
 	if($_SESSION['product_'. $_GET['remove']] < 1) {
 		unset($_SESSION['items_total']);
 		unset($_SESSION['items_quantity']);
-		redirect('checkout.php');
+		redirect('../public/checkout.php');
 	} else {
-		redirect('checkout.php');
+		redirect('../public/checkout.php');
 	}
 }
 
@@ -40,7 +40,7 @@ if(isset($_GET['delete'])) {
 	$_SESSION['product_'. $_GET['delete']] = '0';
 	unset($_SESSION['items_total']);
 	unset($_SESSION['items_quantity']);
-	redirect('checkout.php');
+	redirect('../public/checkout.php');
 }
 
 
@@ -72,9 +72,9 @@ $products = <<<DELIMETER
 	<td>KES {$row['product_price']}</td>
 	<td>{$value}</td>
 	<td>KES {$sub_total}</td>
-	<td><a class="btn btn-info" href="cart.php?add={$row['product_id']}"><span class="glyphicon glyphicon-plus"></span></a>
-	<a class="btn btn-warning" href="cart.php?remove={$row['product_id']}"><span class="glyphicon glyphicon-minus"></span></a>
-	<a class="btn btn-danger" href="cart.php?delete={$row['product_id']}" ><span class="glyphicon glyphicon-remove"></span></a></td>
+	<td><a class="btn btn-info" href="../public/cart.php?add={$row['product_id']}"><span class="glyphicon glyphicon-plus"></span></a>
+	<a class="btn btn-warning" href="../public/cart.php?remove={$row['product_id']}"><span class="glyphicon glyphicon-minus"></span></a>
+	<a class="btn btn-danger" href="../public/cart.php?delete={$row['product_id']}" ><span class="glyphicon glyphicon-remove"></span></a></td>
 </tr>
 DELIMETER;
 
