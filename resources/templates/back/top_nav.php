@@ -15,11 +15,11 @@
   <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
             <?php 
-	            // if(isset($_SESSION['username']) ){
-	            //    echo $_SESSION['username'];
-	            // } else {
-	            //     echo "unregistered user";
-	            // }
+	            if(isset($_SESSION['username']) ){
+	               echo $_SESSION['username'];
+	            } else {
+	                echo "unregistered user";
+	            }
             ?>
 
             <b class="caret"></b></a>

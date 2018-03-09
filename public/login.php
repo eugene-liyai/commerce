@@ -7,7 +7,9 @@
 
 		<header>
 		        <h1 class="text-center">Login</h1>
-		        <h4 class="text-center bg-warning"><?php display_message(); ?></h4>
+		        <?php if(isset($_SESSION['message'])): ?>
+                  <h5 class="text-center bg-warning"><?php display_message(); ?></h5>
+                <?php endif; ?>
 		    <div class="col-sm-4 col-sm-offset-5">         
 		        <form class="" action="" method="post" enctype="multipart/form-data">
 		                

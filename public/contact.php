@@ -8,9 +8,9 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Contact Us</h2>
-                    <h4 class="section-subheading ">
-                        <?php display_message(); ?>
-                    </h4>
+                    <?php if(isset($_SESSION['message'])): ?>
+                      <h5 class="text-center bg-info"><?php display_message(); ?></h5>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="row">

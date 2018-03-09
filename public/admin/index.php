@@ -2,9 +2,9 @@
 <?php include(TEMPLATE_BACK . DS . 'header.php'); ?>
 
 <?php 
-    // if(!isset($_SESSION['username'])) {
-    //     redirect("../../index.php");
-    // }
+    if(!isset($_SESSION['username'])) {
+        redirect("../../public/login.php");
+    }
 ?>
     
     <div id="page-wrapper">
