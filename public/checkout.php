@@ -31,7 +31,7 @@
           <?php cart(); ?>
         </tbody>
     </table>
-  <?php //echo show_paypal(); ?>
+  <?php echo show_paybutton(); ?>
 </form>
 
 

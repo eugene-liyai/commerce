@@ -82,9 +82,9 @@ $products = <<<DELIMETER
 	<td>KES {$row['product_price']}</td>
 	<td>{$value}</td>
 	<td>KES {$sub_total}</td>
-	<td><a class="btn btn-info" href="../public/cart.php?add={$row['product_id']}"><span class="glyphicon glyphicon-plus"></span></a>
-	<a class="btn btn-warning" href="../public/cart.php?remove={$row['product_id']}"><span class="glyphicon glyphicon-minus"></span></a>
-	<a class="btn btn-danger" href="../public/cart.php?delete={$row['product_id']}" ><span class="glyphicon glyphicon-remove"></span></a></td>
+	<td><a class="btn btn-info" href="../resources/cart.php?add={$row['product_id']}"><span class="glyphicon glyphicon-plus"></span></a>
+	<a class="btn btn-warning" href="../resources/cart.php?remove={$row['product_id']}"><span class="glyphicon glyphicon-minus"></span></a>
+	<a class="btn btn-danger" href="../resources/cart.php?delete={$row['product_id']}" ><span class="glyphicon glyphicon-remove"></span></a></td>
 </tr>
 DELIMETER;
 
@@ -102,5 +102,19 @@ DELIMETER;
 	}
 }
 
+function show_paybutton() {
+
+	if(isset($_SESSION['items_quantity'])) {
+		if($_SESSION['items_quantity'] > 0) {
+
+$pay_button = <<<DELIMETER
+<a type="submit" name="upload" class="btn btn-lg btn-danger">Pay</a>
+DELIMETER;
+
+			return $pay_button;
+		}
+	}
+
+}
 
 ?>
