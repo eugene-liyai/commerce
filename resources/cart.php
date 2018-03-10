@@ -82,10 +82,10 @@ $products = <<<DELIMETER
 	<a class="btn btn-warning" href="../public/cart.php?remove={$row['product_id']}"><span class="glyphicon glyphicon-minus"></span></a>
 	<a class="btn btn-danger" href="../public/cart.php?delete={$row['product_id']}" ><span class="glyphicon glyphicon-remove"></span></a></td>
 </tr>
-<input type="hidden" name="item_name_{$item_name}" value="bl">
-<input type="hidden" name="item_number_{$item_number}" value="bl">
-<input type="hidden" name="amount_{$amount}" value="bl">
-<input type="hidden" name="quantity_{$quantity}" value="bl">
+<input type="hidden" name="item_name_{$item_name}" value="{$row['product_title']}">
+<input type="hidden" name="item_number_{$item_number}" value="{$row['product_id']}">
+<input type="hidden" name="amount_{$amount}" value="{$row['product_price']}">
+<input type="hidden" name="quantity_{$quantity}" value="{$value}">
 DELIMETER;
 
 				echo $products;
