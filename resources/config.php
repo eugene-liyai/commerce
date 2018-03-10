@@ -27,8 +27,7 @@ if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-
-require_once('functions.php');
 require_once('cart.php');
+require_once('functions.php');
  
 ?>
