@@ -51,6 +51,12 @@ function cart() {
 	$total = 0;
 	$item_quantity = 0;
 
+	// payment variables
+	$item_name = 1;
+	$item_number = 1;
+	$amount = 1;
+	$quantity = 1;
+
 	foreach($_SESSION as $name => $value) {
 
 		if($value > 0 && substr($name, 0, 8) == 'product_') {
@@ -76,9 +82,18 @@ $products = <<<DELIMETER
 	<a class="btn btn-warning" href="../public/cart.php?remove={$row['product_id']}"><span class="glyphicon glyphicon-minus"></span></a>
 	<a class="btn btn-danger" href="../public/cart.php?delete={$row['product_id']}" ><span class="glyphicon glyphicon-remove"></span></a></td>
 </tr>
+<input type="hidden" name="item_name_{$item_name}" value="bl">
+<input type="hidden" name="item_number_{$item_number}" value="bl">
+<input type="hidden" name="amount_{$amount}" value="bl">
+<input type="hidden" name="quantity_{$quantity}" value="bl">
 DELIMETER;
 
 				echo $products;
+
+				$item_name++;
+				$item_number++;
+				$amount++;
+				$quantity++;
 			}
 
 			$_SESSION['items_total'] = $total += $sub_total;
