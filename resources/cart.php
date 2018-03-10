@@ -51,6 +51,12 @@ function cart() {
 	$total = 0;
 	$item_quantity = 0;
 
+	// payment variables
+	$item_name = 1;
+	$item_number = 1;
+	$amount = 1;
+	$quantity = 1;
+
 	foreach($_SESSION as $name => $value) {
 
 		if($value > 0 && substr($name, 0, 8) == 'product_') {
@@ -67,18 +73,27 @@ function cart() {
 				$item_quantity += $value;
 
 $products = <<<DELIMETER
+<input type="hidden" name="item_name_{$item_name}" value="{$row['product_title']}">
+<input type="hidden" name="item_number_{$item_number}" value="{$row['product_id']}">
+<input type="hidden" name="amount_{$amount}" value="{$row['product_price']}">
+<input type="hidden" name="quantity_{$quantity}" value="{$value}">
 <tr>
 	<td>{$row['product_title']}</td>
 	<td>KES {$row['product_price']}</td>
 	<td>{$value}</td>
 	<td>KES {$sub_total}</td>
-	<td><a class="btn btn-info" href="../public/cart.php?add={$row['product_id']}"><span class="glyphicon glyphicon-plus"></span></a>
-	<a class="btn btn-warning" href="../public/cart.php?remove={$row['product_id']}"><span class="glyphicon glyphicon-minus"></span></a>
-	<a class="btn btn-danger" href="../public/cart.php?delete={$row['product_id']}" ><span class="glyphicon glyphicon-remove"></span></a></td>
+	<td><a class="btn btn-info" href="../resources/cart.php?add={$row['product_id']}"><span class="glyphicon glyphicon-plus"></span></a>
+	<a class="btn btn-warning" href="../resources/cart.php?remove={$row['product_id']}"><span class="glyphicon glyphicon-minus"></span></a>
+	<a class="btn btn-danger" href="../resources/cart.php?delete={$row['product_id']}" ><span class="glyphicon glyphicon-remove"></span></a></td>
 </tr>
 DELIMETER;
 
 				echo $products;
+
+				$item_name++;
+				$item_number++;
+				$amount++;
+				$quantity++;
 			}
 
 			$_SESSION['items_total'] = $total += $sub_total;
@@ -87,5 +102,19 @@ DELIMETER;
 	}
 }
 
+function show_paybutton() {
+
+	if(isset($_SESSION['items_quantity'])) {
+		if($_SESSION['items_quantity'] > 0) {
+
+$pay_button = <<<DELIMETER
+<a type="submit" name="upload" class="btn btn-lg btn-danger">Pay</a>
+DELIMETER;
+
+			return $pay_button;
+		}
+	}
+
+}
 
 ?>
