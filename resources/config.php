@@ -28,6 +28,7 @@ if (!$connection) {
 }
 
 
-require_once("functions.php");
+require_once('functions.php');
+require_once('cart.php');
  
 ?>
