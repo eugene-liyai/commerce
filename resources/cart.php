@@ -140,10 +140,20 @@ function report() {
 			confirm($query);
 
 			while($row = fetch_array($query)){
-
+				$product_price = $row['product_price'];
 				$sub_total = $row['product_price'] * $value;
 				$item_quantity += $value;
 
+				$insert_report = query("INSERT INTO reports(
+						product_id,
+						product_price,
+						product_quantity,
+					) VALUES (
+						'{$id}',
+						'{$product_price}',
+						'{$value}'
+					) ");
+				confirm(insert_report);
 			}
 
 			$total += $sub_total;
