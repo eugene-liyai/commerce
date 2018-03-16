@@ -117,4 +117,39 @@ DELIMETER;
 
 }
 
+// report
+function report() {
+
+	$total = 0;
+	$item_quantity = 0;
+
+	// payment variables
+	$item_name = 1;
+	$item_number = 1;
+	$amount = 1;
+	$quantity = 1;
+
+	foreach($_SESSION as $name => $value) {
+
+		if($value > 0 && substr($name, 0, 8) == 'product_') {
+
+			$length = strlen($name - 8);
+			$id = substr($name, 8, $length);
+			
+			$query = query("SELECT * FROM products WHERE product_id=". escape_string($id));
+			confirm($query);
+
+			while($row = fetch_array($query)){
+
+				$sub_total = $row['product_price'] * $value;
+				$item_quantity += $value;
+
+			}
+
+			$total += $sub_total;
+			$item_quantity;
+		}
+	}
+}
+
 ?>
