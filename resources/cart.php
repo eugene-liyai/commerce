@@ -147,7 +147,7 @@ function report() {
 			}
 
 			$total += $sub_total;
-			$item_quantity;
+			echo $item_quantity;
 		}
 	}
 }

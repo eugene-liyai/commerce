@@ -20,7 +20,9 @@
 			'{$status}'
 			) ");
 		confirm(query);
-		session_destroy();
+		// session_destroy();
+
+		report();
 
 	} else {
 		redirect('transaction_error.php');
