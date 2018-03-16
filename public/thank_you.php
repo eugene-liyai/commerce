@@ -1,4 +1,4 @@
-<?php require_once("../resources/config.php"); ?>
+ <?php require_once("../resources/config.php"); ?>
 <?php include(TEMPLATE_FRONT . DS . 'header.php') ?>
 
 <?php // process_transaction(); ?>
