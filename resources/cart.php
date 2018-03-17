@@ -148,7 +148,6 @@ function report() {
 			) ");
 
 		$last_id = last_id();
-		echo $last_id;
 
 		confirm($insert_order);
 
@@ -168,9 +167,15 @@ function report() {
 					$item_quantity += $value;
 					$insert_report = query("INSERT INTO reports(
 							product_id,
+							order_id,
 							product_price,
 							product_quantity
-						) VALUES ({$id},{$product_price},{$value}); ");
+						) VALUES (
+							{$id},
+							{$last_id},
+							{$product_price},
+							{$value}); 
+						");
 					confirm($insert_report);
 				}
 
