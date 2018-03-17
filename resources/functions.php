@@ -43,6 +43,11 @@ function fetch_array($result) {
 	return mysqli_fetch_array($result);
 }
 
+function last_id() {
+	global $connection;
+	return mysqli_insert_id($connection);
+}
+
 // Get Products
 
 function get_products() {
