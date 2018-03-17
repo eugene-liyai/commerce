@@ -120,40 +120,63 @@ DELIMETER;
 // report
 function report() {
 
-	$total = 0;
-	$item_quantity = 0;
+	if(isset($_GET['tx'])) {
 
-	// payment variables
-	$item_name = 1;
-	$item_number = 1;
-	$amount = 1;
-	$quantity = 1;
+		$amount = $_GET['amt'];
+		$currency = $_GET['cc'];
+		$transaction = $_GET['tx'];
+		$status = $_GET['st'];
+		$insert_order = query("INSERT INTO orders(
+			order_amount,
+			order_transaction,
+			order_status,
+			order_currency) VALUES (
+			'{$amount}',
+			'{$currency}',
+			'{$transaction}',
+			'{$status}'
+			) ");
+		confirm($insert_order);
+		// session_destroy();
 
-	foreach($_SESSION as $name => $value) {
+		$total = 0;
+		$item_quantity = 0;
 
-		if($value > 0 && substr($name, 0, 8) == 'product_') {
+		// payment variables
+		$item_name = 1;
+		$item_number = 1;
+		$amount = 1;
+		$quantity = 1;
 
-			$length = strlen($name - 8);
-			$id = substr($name, 8, $length);
-			
-			$query = query("SELECT * FROM products WHERE product_id=". escape_string($id));
-			confirm($query);
+		foreach($_SESSION as $name => $value) {
 
-			while($row = fetch_array($query)){
-				$product_price = $row['product_price'];
-				$sub_total = $row['product_price'] * $value;
-				$item_quantity += $value;
-				$insert_report = query("INSERT INTO reports(
-						product_id,
-						product_price,
-						product_quantity
-					) VALUES ({$id},{$product_price},{$value}); ");
-				confirm($insert_report);
+			if($value > 0 && substr($name, 0, 8) == 'product_') {
+
+				$length = strlen($name - 8);
+				$id = substr($name, 8, $length);
+				
+				$query = query("SELECT * FROM products WHERE product_id=". escape_string($id));
+				confirm($query);
+
+				while($row = fetch_array($query)){
+					$product_price = $row['product_price'];
+					$sub_total = $row['product_price'] * $value;
+					$item_quantity += $value;
+					$insert_report = query("INSERT INTO reports(
+							product_id,
+							product_price,
+							product_quantity
+						) VALUES ({$id},{$product_price},{$value}); ");
+					confirm($insert_report);
+				}
+
+				$total += $sub_total;
+				echo $item_quantity;
 			}
-
-			$total += $sub_total;
-			echo $item_quantity;
 		}
+
+	} else {
+		redirect('transaction_error.php');
 	}
 }
 
