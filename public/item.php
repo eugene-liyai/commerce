@@ -49,7 +49,7 @@ confirm($query);
             <span class="glyphicon glyphicon-star"></span>
             <span class="glyphicon glyphicon-star"></span>
             <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>''
             3.0 stars
         </p>
     </div>
@@ -59,7 +59,7 @@ confirm($query);
    
     <form action="">
         <div class="form-group">
-           <a href="../resources/cart.php?add=<?php echo $row['product_id']; ?>" class="btn btn-primary">ADD</a>
+           <a href="../resources/cart.php?add=<?php echo $row['product_id']; ?>" class="btn btn-primary">ADD TO CART</a>
         </div>
     </form>
 

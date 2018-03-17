@@ -1,5 +1,7 @@
 .caption {
+	height: 220px;
+}
 
-height: 156px;
-
+textarea.form-control {
+    height: 132px;
 }

@@ -2,9 +2,24 @@
 
 // Helper Functions
 
+function set_message($message) {
+	if(!empty($message)) {
+		$_SESSION['message'] = $message;
+	} else {
+		$message = '';
+	}
+}
+
+function display_message() {
+	if(isset($_SESSION['message'])) {
+		echo $_SESSION['message'];
+		unset($_SESSION['message']);
+	}
+}
+
 function redirect ($location) {
 
-	header('Location: $location ');
+	return header("Location: $location ");
 }
 
 function query($sql) {
@@ -28,6 +43,11 @@ function fetch_array($result) {
 	return mysqli_fetch_array($result);
 }
 
+function last_id() {
+	global $connection;
+	return mysqli_insert_id($connection);
+}
+
 // Get Products
 
 function get_products() {
@@ -44,11 +64,8 @@ $product = <<<DELIMETER
             <h4><a href="item.php?id={$row['product_id']}">{$row['product_title']}</a>
             </h4>
             <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>  
-             <a class="btn btn-primary" target="_blank" href="item.php?id={$row['product_id']}">Add to cart</a>
+             <a class="btn btn-primary" href="../resources/cart.php?add={$row['product_id']}">Add to cart</a>
         </div>
-
-
-       
     </div>
 </div>
 DELIMETER;
@@ -72,4 +89,103 @@ DELIMETER;
 	}
 }
 
+// get products in category
+
+function get_products_in_category_page() {
+	$query = query("SELECT * FROM products WHERE product_category_id = ". escape_string($_GET['id']) ." ");
+	confirm($query);
+
+	while($row = fetch_array($query)){
+$products = <<<DELIMETER
+	<div class="col-md-3 col-sm-6 hero-feature">
+		<div class="thumbnail">
+			<img src="{$row['product_image']}" alt="">
+			<div class="caption">
+				<h3>{$row['product_title']}</h3>
+				<p>{$row['product_short_description']}</p>
+				<p>
+					<a href="#" class="btn btn-primary">Buy Now!</a>
+					<a href="item.php?id={$row['product_id']}" class="btn btn-default">More Info</a>
+				</p>
+			</div>
+		</div>
+	</div>
+DELIMETER;
+
+	echo $products;
+	}
+}
+
+// get products for shop page
+
+function get_products_in_shop_page() {
+	$query = query("SELECT * FROM products");
+	confirm($query);
+
+	while($row = fetch_array($query)){
+$products = <<<DELIMETER
+	<div class="col-md-3 col-sm-6 hero-feature">
+		<div class="thumbnail">
+			<img src="{$row['product_image']}" alt="">
+			<div class="caption">
+				<h3>{$row['product_title']}</h3>
+				<p>{$row['product_short_description']}</p>
+				<p>
+					<a href="#" class="btn btn-primary">Buy Now!</a>
+					<a href="item.php?id={$row['product_id']}" class="btn btn-default">More Info</a>
+				</p>
+			</div>
+		</div>
+	</div>
+DELIMETER;
+
+	echo $products;
+	}
+}
+
+// login function
+
+function login_user() {
+	if(isset($_POST['submit'])) {
+		$username = escape_string($_POST['username']);
+		$password = escape_string($_POST['password']);
+
+		$query = query("SELECT * FROM users WHERE username = '{$username}' AND password = '{$password}' ");
+		confirm($query);
+
+		if(mysqli_num_rows($query) == 0) {
+			set_message('Username or password is incorrect');
+			redirect("login.php");
+		} else {
+			$_SESSION['username'] = $username;
+			redirect("admin");
+		}
+	}
+}
+
+// send message from contact us page
+
+function send_message() {
+	if(isset($_POST['submit'])) {
+		global $admin_email;
+		$from_name 	= escape_string($_POST['name']);
+		$email 		= escape_string($_POST['email']);
+		$subject 	= escape_string($_POST['subject']);
+		$message 	= escape_string($_POST['message']);
+
+		$headers 	= "From: {$from_name} {$email}";
+		$result 	= mail($admin_email, $subject, $message, $headers);
+
+		if(!$result) {
+			set_message('Error! message not sent. Try again');
+			redirect('contact.php');
+		} else {
+			set_message('Message sent');
+			redirect('contact.php');
+		}
+	}
+}
+
+
+ 
 ?>

@@ -1,12 +1,13 @@
 <?php
 
-require '../vendor/autoload.php';
+require_once(dirname(__DIR__, 1). '/vendor/autoload.php');
 
 $dotenv = new Dotenv\Dotenv(dirname(__DIR__, 1));
 $dotenv->load();
 
 ob_start();
 session_start();
+// session_destroy();
 
 // directory pattern
 defined("DS") ? null : define("DS", DIRECTORY_SEPARATOR);
@@ -20,12 +21,13 @@ defined("DB_PASSWORD") ? null : define("DB_PASSWORD", getenv('DB_PASSWORD'));
 defined("DB_NAME") ? null : define("DB_NAME", getenv('DB_DATABASE'));
 
 $connection = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
+$admin_email = getenv('ADMIN_EMAIL');
 
 if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-
-require_once("functions.php");
+require_once('cart.php');
+require_once('functions.php');
  
 ?>
