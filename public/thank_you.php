@@ -3,14 +3,7 @@
 
 <?php // process_transaction(); ?>
 <?php
-	if(isset($_GET['tx'])) {
-		
-
-		report();
-
-	} else {
-		redirect('transaction_error.php');
-	}
+	report();
 ?>
   <!-- Page Content -->
   <div class="container">

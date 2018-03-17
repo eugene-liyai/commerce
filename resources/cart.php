@@ -122,6 +122,15 @@ function report() {
 
 	if(isset($_GET['tx'])) {
 
+		// payment variables
+		$item_name = 1;
+		$item_number = 1;
+		$amount = 1;
+		$quantity = 1;
+
+		$total = 0;
+		$item_quantity = 0;
+
 		$amount = $_GET['amt'];
 		$currency = $_GET['cc'];
 		$transaction = $_GET['tx'];
@@ -137,16 +146,6 @@ function report() {
 			'{$status}'
 			) ");
 		confirm($insert_order);
-		// session_destroy();
-
-		$total = 0;
-		$item_quantity = 0;
-
-		// payment variables
-		$item_name = 1;
-		$item_number = 1;
-		$amount = 1;
-		$quantity = 1;
 
 		foreach($_SESSION as $name => $value) {
 
@@ -174,6 +173,7 @@ function report() {
 				echo $item_quantity;
 			}
 		}
+		// session_destroy();
 
 	} else {
 		redirect('transaction_error.php');
