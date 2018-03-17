@@ -136,15 +136,20 @@ function report() {
 		$transaction = $_GET['tx'];
 		$status = $_GET['st'];
 		$insert_order = query("INSERT INTO orders(
-			order_amount,
-			order_transaction,
-			order_status,
-			order_currency) VALUES (
-			'{$amount}',
-			'{$currency}',
-			'{$transaction}',
-			'{$status}'
+				order_amount,
+				order_transaction,
+				order_status,
+				order_currency
+			) VALUES (
+				'{$amount}',
+				'{$currency}',
+				'{$transaction}',
+				'{$status}'
 			) ");
+
+		$last_id = last_id();
+		echo $last_id;
+
 		confirm($insert_order);
 
 		foreach($_SESSION as $name => $value) {
@@ -170,7 +175,7 @@ function report() {
 				}
 
 				$total += $sub_total;
-				echo $item_quantity;
+				$item_quantity;
 			}
 		}
 		// session_destroy();
