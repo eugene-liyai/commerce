@@ -146,7 +146,7 @@ function report() {
 				$insert_report = query("INSERT INTO reports(
 						product_id,
 						product_price,
-						product_quantity,
+						product_quantity
 					) VALUES ({$id},{$product_price},{$value}); ");
 				confirm($insert_report);
 			}
