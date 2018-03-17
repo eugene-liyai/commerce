@@ -188,7 +188,6 @@ function report() {
 			}
 		}
 		session_destroy();
-
 	} else {
 		redirect('transaction_error.php');
 	}
