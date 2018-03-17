@@ -135,21 +135,6 @@ function report() {
 		$currency = $_GET['cc'];
 		$transaction = $_GET['tx'];
 		$status = $_GET['st'];
-		$insert_order = query("INSERT INTO orders(
-				order_amount,
-				order_transaction,
-				order_status,
-				order_currency
-			) VALUES (
-				'{$amount}',
-				'{$currency}',
-				'{$transaction}',
-				'{$status}'
-			) ");
-
-		$last_id = last_id();
-
-		confirm($insert_order);
 
 		foreach($_SESSION as $name => $value) {
 
@@ -157,6 +142,22 @@ function report() {
 
 				$length = strlen($name - 8);
 				$id = substr($name, 8, $length);
+
+				// insert orders
+				$insert_order = query("INSERT INTO orders(
+						order_amount,
+						order_transaction,
+						order_status,
+						order_currency
+					) VALUES (
+						'{$amount}',
+						'{$currency}',
+						'{$transaction}',
+						'{$status}'
+					) ");
+
+				$last_id = last_id();
+				confirm($insert_order);
 				
 				$query = query("SELECT * FROM products WHERE product_id=". escape_string($id));
 				confirm($query);
@@ -186,7 +187,7 @@ function report() {
 				$item_quantity;
 			}
 		}
-		// session_destroy();
+		session_destroy();
 
 	} else {
 		redirect('transaction_error.php');
